@@ -1,4 +1,4 @@
-<h1>Accounts</h1>
+<h1>Люди</h1>
 
 <table style="background-color:whitesmoke;:right" class="table">
   <thead>
@@ -15,10 +15,16 @@
       <td><%= person.first_name %></td>
       <td><%= person.middle_name %></td>
       <td><%= eval(person.declensions.to_a[0].genitive)[:full_name] %></td>
-      <td><%= person.sex %></td>
-      <td><%= link_to 'Show', person_path(person), class: :"button is-small is-info"%></td>
-      <td><%= link_to 'Edit', edit_person_path(person), class: :"button is-small is-info"%></td>
-      <td><%= button_to 'Delete person', {controller: :people,
+      <td>
+        <% if person.sex.eql?('Male') %>
+          Мужской
+        <% else %>
+          Женский
+        <% end %>
+      </td>
+      <td><%= link_to 'Показать персону', person_path(person), class: :"button is-small is-info"%></td>
+      <td><%= link_to 'Редактировать персону', edit_person_path(person), class: :"button is-small is-info"%></td>
+      <td><%= button_to 'Удалить', {controller: :people,
         action: :'destroy', id: person.id }, class: :"button is-small is-danger", method: :delete %></a></td>
     </tbody>
   <% end %>

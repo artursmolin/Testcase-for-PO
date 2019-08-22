@@ -21,7 +21,7 @@ RSpec.describe Person, type: :model do
   context 'with blank last_name' do
     let(:person) { build(:person, last_name: '') }
 
-    it 'is invalid without first_name' do
+    it 'is invalid without last_name' do
       expect(person).to be_valid
     end
   end
@@ -29,7 +29,7 @@ RSpec.describe Person, type: :model do
   context 'with blank middle_name' do
     let(:person) { build(:person, middle_name: '') }
 
-    it 'is invalid without first_name' do
+    it 'is invalid without  middle_name' do
       expect(person).to be_valid
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe Person, type: :model do
   context 'with blank sex' do
     let(:person) { build(:person, sex: '') }
 
-    it 'is invalid without first_name' do
+    it 'is invalid without sex' do
       expect(person).to be_invalid
       expect(person.errors.messages).to include(:sex)
     end

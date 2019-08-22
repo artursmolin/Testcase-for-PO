@@ -21,7 +21,7 @@ class PeopleController < ApplicationController
     @person.save
     declensions = Declension.new(DeclensionService.new(@person).call)
     if declensions.save
-      redirect_to people_path, notice: 'Person was successfully created.'
+      redirect_to people_path
     else
       render :new
     end
@@ -30,7 +30,7 @@ class PeopleController < ApplicationController
   def update
     if @person.update(person_params)
       @declensions.update(DeclensionService.new(@person).call)
-      redirect_to @person, notice: 'Person was successfully updated.'
+      redirect_to @person
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
 
   def destroy
     @person.destroy
-    redirect_to people_url, notice: 'Person was successfully destroyed.'
+    redirect_to people_url
   end
 
   private
@@ -49,6 +49,11 @@ class PeopleController < ApplicationController
   end
 
   def person_params
+    params[:person][:sex] = if params[:person][:sex].eql?('Мужской')
+                              'Male'
+                            else
+                              'Female'
+                            end
     params.require(:person).permit(:first_name, :last_name, :middle_name, :sex, :fullname)
   end
 end

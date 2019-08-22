@@ -1,24 +1,30 @@
 <div class="columns is-desktop is-multiline is-vcentered">
   <div class="column is-narrow">
+    <% if @person.errors.any? %>
+      <% @person.errors.full_messages.each do |message| %>
+        <li class="notification is-danger is-multiline"><%= message %></li>
+      <% end %>
+    <% end %>
+
     <%= form_with model: @person, local: true do |form| %>
 
       <div class="field">
-        <%= form.label :last_name %>
-        <%= form.text_field :last_name, class: :input, placeholder: :"Edit your surname"  %>
+        <%= form.label :Фамилия %>
+        <%= form.text_field :last_name, class: :input, placeholder: :"Ваша фамилия"  %>
       </div>
 
       <div class="field">
-        <%= form.label :first_name %>
-        <%= form.text_field :first_name, class: :input, placeholder: :"Edit your name" %>
+        <%= form.label :Имя %>
+        <%= form.text_field :first_name, class: :input, placeholder: :"Ваше имя" %>
       </div>
 
       <div class="field">
-        <%= form.label :middle_name %>
-        <%= form.text_field :middle_name, class: :input, placeholder: :"Edit your name" %>
+        <%= form.label :Отчество %>
+        <%= form.text_field :middle_name, class: :input, placeholder: :"Ваше отчество" %>
       </div>
 
       <div class="select" style="margin-bottom:20px">
-        <%= form.select :sex, options_for_select(%w[male female]), class: :select, placeholder: :"Edit your surname"  %>
+        <%= form.select :sex, options_for_select(%w[Мужской Женский]), class: :select, placeholder: :"Edit your surname"  %>
       </div>
 
       <div class="actions">
@@ -27,4 +33,3 @@
     <% end %>
   </div>
 </div>
-

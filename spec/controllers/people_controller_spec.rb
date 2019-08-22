@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe PeopleController do
-  render_views
-
   let(:person) { FactoryBot.create(:person) }
 
   describe 'GET index' do

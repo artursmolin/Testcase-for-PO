@@ -1,33 +1,5 @@
-<div class="columns is-desktop is-multiline is-vcentered">
-  <div class="column is-narrow">
-  	<h1>New Person</h1>
+<h1>Новая персона</h1>
 
-    <%= form_with model: @person, local: true do |form| %>
+<%= render 'form' %>
 
-      <div class="field">
-        <%= form.label :last_name %>
-        <%= form.text_field :last_name, class: :input, placeholder: :"Edit your surname"  %>
-      </div>
-
-      <div class="field">
-        <%= form.label :first_name %>
-        <%= form.text_field :first_name, class: :input, placeholder: :"Edit your name" %>
-      </div>
-
-      <div class="field">
-        <%= form.label :middle_name %>
-        <%= form.text_field :middle_name, class: :input, placeholder: :"Edit your name" %>
-      </div>
-
-      <div class="select" style="margin-bottom:20px">
-        <%= form.select :sex, options_for_select(%w[male female]), class: :select, placeholder: :"Edit your surname"  %>
-      </div>
-
-      <div class="actions">
-        <%= form.submit class: "button is-success is-small" %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<%= link_to 'Back', people_path %>
+<%= link_to 'Back', people_path, class: "button is-small is-info" %>

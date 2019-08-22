@@ -1,0 +1,25 @@
+<td>
+  <% eval(@declensions.genitive).each do |declension,value| %>
+   <%= person_params(declension, value) %><br>
+  <% end %>
+</td>
+<td>
+  <% eval(@declensions.dative).each do |declension,value| %>
+   <%= person_params(declension, value) %><br>
+  <% end %>
+</td>
+<td>
+  <% eval(@declensions.accusative).each do |declension,value| %>
+   <%= person_params(declension, value) %><br>
+  <% end %>
+</td>
+<td>
+  <% eval(@declensions.instrumental).each do |declension,value| %>
+   <%= person_params(declension, value) %><br>
+  <% end %>
+</td>
+<td>
+  <% eval(@declensions.prepositional).each do |declension,value| %>
+   <%= person_params(declension, value) %><br>
+  <% end %>
+</td>

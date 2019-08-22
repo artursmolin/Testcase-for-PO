@@ -1,63 +1,40 @@
-<h1 style="margin-bottom:50px"> Your profile </h1>
+<h1 style="margin-bottom:50px"> Персона </h1>
 
 <table style="background-color:whitesmoke" class="table">
   <thead>
-    <th> First name </th>
-    <th> Last Name </th>
-    <th> Middle Name </th>
-    <th> Sex </th>
+    <th> Фамилия </th>
+    <th> Имя </th>
+    <th> Отчество </th>
+    <th> Пол </th>
     <th colspan="3"> Actions </th>
   </thead>
   <tbody>
-    <td><%= @person.first_name %></td>
     <td><%= @person.last_name %></td>
+    <td><%= @person.first_name %></td>
     <td><%= @person.middle_name %></td>
-    <td><%= @person.sex %></td>
-    <td style="padding-right:10px"><%= link_to 'Edit person', edit_person_path, class: :"button is-small is-warning" %></td>
-    <td style="padding-right:10px"><%= link_to 'Back to all persons', people_path, class: :"button is-small is-info"%></td>
-    <td><%= button_to 'Delete person', {controller: :people,
+    <td>
+      <% if @person.sex.eql?('Male') %>
+        Мужской
+      <% else %>
+        Женский
+      <% end %>
+    </td>
+    <td style="padding-right:10px"><%= link_to 'Редактировать персону', edit_person_path, class: :"button is-small is-warning" %></td>
+    <td><%= button_to 'Удалить персону', {controller: :people,
         action: :'destroy', id: @person.id }, class: :"button is-small is-danger", method: :delete %></a></td>
+    <td style="padding-right:10px"><%= link_to 'Вернуться ко всем персонам', people_path, class: :"button is-small is-info"%></td>
   </tbody>
 </table>
 
 <table style="background-color:whitesmoke" class="table">
-	<thead>
-		<th> Genitive </th>
-    <th> Dative </th>
-    <th> Accusative </th>
-    <th> Instrumental </th>
-    <th> Prepositional </th>
+  <thead>
+    <th> Родительный </th>
+    <th> Дательный </th>
+    <th> Винительный </th>
+    <th> Творительный </th>
+    <th> Предложный </th>
   </thead>
   <tbody>
- 			<td>
-          Surname: <%= eval(@declensions.genitive)[:last_name]%> <br>
- 					Name: <%= eval(@declensions.genitive)[:first_name]%> <br>
- 					Middle name: <%= eval(@declensions.genitive)[:middle_name]%> <br>
- 					Full name: <%= eval(@declensions.genitive)[:full_name]%> 
- 			</td>
- 			<td>
-					Surname: <%= eval(@declensions.dative)[:last_name]%> <br>
-          Name: <%= eval(@declensions.dative)[:first_name]%> <br>
- 					Middle name: <%= eval(@declensions.dative)[:middle_name]%> <br>
- 					Full name: <%= eval(@declensions.dative)[:full_name]%> 
- 			</td>
- 			<td>
-					Surname: <%= eval(@declensions.accusative)[:last_name]%> <br>
-          Name: <%= eval(@declensions.accusative)[:first_name]%> <br>
- 					Middle name: <%= eval(@declensions.accusative)[:middle_name]%> <br>
- 					Full name: <%= eval(@declensions.accusative)[:full_name]%> 
- 			</td>
- 			<td>
-					Surname: <%= eval(@declensions.instrumental)[:last_name]%> <br>
-          Name: <%= eval(@declensions.instrumental)[:first_name]%> <br>
- 					Middle name: <%= eval(@declensions.instrumental)[:middle_name]%> <br>
- 					Full name: <%= eval(@declensions.instrumental)[:full_name]%> 
- 			</td>
- 			<td>
-          Surname: <%= eval(@declensions.prepositional)[:last_name]%> <br>
- 					Name: <%= eval(@declensions.prepositional)[:first_name]%> <br>
- 					Middle name: <%= eval(@declensions.prepositional)[:middle_name]%> <br>
- 					Full name: <%= eval(@declensions.prepositional)[:full_name]%> 
- 			</td>
+    <%= render @declensions %>
   </tbody>
 </table>

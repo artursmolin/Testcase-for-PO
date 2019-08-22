@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeclensionService
-  attr_reader :person, :first_name, :middle_name, :last_name, :full_name
+  attr_reader :person, :first_name, :middle_name, :last_name
 
   def initialize(person)
     @person = person
@@ -16,40 +16,40 @@ class DeclensionService
     {
       person_id: person.id,
       genitive: {
+        last_name: genitive_last_name,
         first_name: first_name.genitive.to_s,
-        last_name: last_name.instrumental.to_s,
         middle_name: middle_name.genitive.to_s,
-        full_name: last_name.instrumental.to_s + ' ' +
+        full_name: genitive_last_name + ' ' +
           first_name.genitive.to_s + ' ' +
           middle_name.genitive.to_s
       },
       dative: {
-        first_name: first_name.dative.to_s,
         last_name: last_name.dative.to_s,
+        first_name: first_name.dative.to_s,
         middle_name: middle_name.dative.to_s,
         full_name: last_name.dative.to_s + ' ' +
           first_name.dative.to_s + ' ' +
           middle_name.dative.to_s
       },
       accusative: {
-        first_name: first_name.accusative.to_s,
         last_name: last_name.accusative.to_s,
+        first_name: first_name.accusative.to_s,
         middle_name: middle_name.accusative.to_s,
         full_name: last_name.accusative.to_s + ' ' +
           first_name.accusative.to_s + ' ' +
           middle_name.accusative.to_s
       },
       instrumental: {
-        first_name: first_name.instrumental.to_s,
         last_name: last_name.instrumental.to_s,
+        first_name: first_name.instrumental.to_s,
         middle_name: middle_name.instrumental.to_s,
         full_name: last_name.instrumental.to_s + ' ' +
           first_name.instrumental.to_s + ' ' +
           middle_name.instrumental.to_s
       },
       prepositional: {
-        first_name: first_name.prepositional.to_s,
         last_name: prepositional_last_name,
+        first_name: first_name.prepositional.to_s,
         middle_name: middle_name.prepositional.to_s,
         full_name: prepositional_last_name + ' ' +
           first_name.prepositional.to_s + ' ' +
@@ -61,6 +61,14 @@ class DeclensionService
   def prepositional_last_name
     if person.sex.eql?('Male')
       last_name.prepositional.to_s
+    else
+      last_name.instrumental.to_s
+    end
+  end
+
+  def genitive_last_name
+    if person.sex.eql?('Male')
+      last_name.genitive.to_s
     else
       last_name.instrumental.to_s
     end
