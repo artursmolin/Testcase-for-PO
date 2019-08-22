@@ -29,6 +29,7 @@ class PeopleController < ApplicationController
 
   def update
     if @person.update(person_params)
+      @declensions.update(DeclensionService.new(@person).call)
       redirect_to @person, notice: 'Person was successfully updated.'
     else
       render :edit
@@ -44,7 +45,7 @@ class PeopleController < ApplicationController
 
   def set_person_and_declensions
     @person = Person.find(params[:id])
-    @declensions = @person.declensions
+    @declensions = Declension.find_by(person_id: @person.id)
   end
 
   def person_params
