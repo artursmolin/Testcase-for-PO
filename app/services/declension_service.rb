@@ -17,9 +17,9 @@ class DeclensionService
       person_id: person.id,
       genitive: {
         first_name: first_name.genitive.to_s,
-        last_name: last_name.genitive.to_s,
+        last_name: last_name.instrumental.to_s,
         middle_name: middle_name.genitive.to_s,
-        full_name: last_name.genitive.to_s + ' ' +
+        full_name: last_name.instrumental.to_s + ' ' +
           first_name.genitive.to_s + ' ' +
           middle_name.genitive.to_s
       },
@@ -49,13 +49,21 @@ class DeclensionService
       },
       prepositional: {
         first_name: first_name.prepositional.to_s,
-        last_name: last_name.prepositional.to_s,
+        last_name: prepositional_last_name,
         middle_name: middle_name.prepositional.to_s,
-        full_name: last_name.prepositional.to_s + ' ' +
+        full_name: prepositional_last_name + ' ' +
           first_name.prepositional.to_s + ' ' +
           middle_name.prepositional.to_s
       }
     }
+  end
+
+  def prepositional_last_name
+    if person.sex.eql?('Male')
+      last_name.prepositional.to_s
+    else
+      last_name.instrumental.to_s
+    end
   end
   # rubocop: enable Metrics/AbcSize
   # rubocop: enable Metrics/MethodLength

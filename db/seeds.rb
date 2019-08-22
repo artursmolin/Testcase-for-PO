@@ -1,5 +1,6 @@
 require 'factory_bot_rails'
 
-50.times do
-	FactoryBot.create_list(:person, 10)
+5.times do
+	person = FactoryBot.create(:person)
+	Declension.create(DeclensionService.new(person).call)
 end
