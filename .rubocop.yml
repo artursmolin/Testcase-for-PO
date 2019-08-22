@@ -1,0 +1,36 @@
+AllCops:
+  Exclude:
+    # You could specify set of files or dirs while you want to be ignored by rubocop
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'lib/**/*'
+    - 'bin/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+Documentation: # Disabling documentation cop
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/BlockLength:
+  Exclude:
+    - ./spec/**/*_spec.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - ./db/migrate/*.rb
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - ./spec/**/*_spec.rb
+
+Style/Documentation:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false

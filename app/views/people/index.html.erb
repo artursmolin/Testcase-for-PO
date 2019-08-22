@@ -1,0 +1,28 @@
+<h1>Accounts</h1>
+
+<table style="background-color:whitesmoke;:right" class="table">
+  <thead>
+    <th> Фамилия </th>
+    <th> Имя </th>
+    <th> Отчество </th>
+    <th> ФИО </th>
+    <th> Пол </th>
+    <th colspan="3"> Actions </th>
+  </thead>
+  <% @people.each do |person|  %>
+    <tbody>
+      <td><%= person.last_name %></td>
+      <td><%= person.first_name %></td>
+      <td><%= person.middle_name %></td>
+      <td><%= eval(person.declensions.to_a[0].genitive)[:full_name] %></td>
+      <td><%= person.sex %></td>
+      <td><%= link_to 'Show', person_path(person), class: :"button is-small is-info"%></td>
+      <td><%= link_to 'Edit', edit_person_path(person), class: :"button is-small is-info"%></td>
+      <td><%= button_to 'Delete person', {controller: :people,
+        action: :'destroy', id: person.id }, class: :"button is-small is-danger", method: :delete %></a></td>
+    </tbody>
+  <% end %>
+</table>
+<br>
+
+<%= link_to 'New Account', new_person_path, class: :"button is-small is-success" %>
